@@ -3003,3 +3003,16 @@ body.modal-open {
   color: var(--color-secondary);
   font-weight: 700;
 }
+
+/* ==========================================
+   TEMPORARY HIDES (PLAY BUTTON & EVENTS)
+   ========================================== */
+.media-play-overlay,
+.play-btn-large {
+  display: none !important;
+}
+
+#events {
+  display: none !important;
+}
+
