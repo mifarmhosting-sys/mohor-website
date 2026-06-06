@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - MOHOR</title>
+  <meta name="description" content="Get in touch with us. Send a message, find our office locations, or call us directly. We would love to hear from you.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ==========================================
+       HEADER / NAVIGATION
+       ========================================== -->
+  <header class="header" id="header">
+    <div class="container nav-container">
+      <a href="index.html" class="logo" id="header-logo">
+        MOHOR<span>.</span>
+      </a>
+      
+      <nav class="nav-menu" id="nav-menu">
+        <a href="index.html" class="nav-link" id="nav-link-home">Home</a>
+        <a href="about.html" class="nav-link" id="nav-link-about">About us</a>
+        <a href="what-we-do.html" class="nav-link" id="nav-link-services">What we do</a>
+        <a href="media.html" class="nav-link" id="nav-link-projects">Media</a>
+        <a href="contact.html" class="nav-link active" id="nav-link-contact">Contact</a>
+        <a href="donate.html" class="btn btn-dark mobile-only" id="nav-btn-donate-mobile">Donate</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="donate.html" class="btn btn-dark" id="nav-btn-donate">Donate</a>
+      </div>
+
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       CONTACT HERO SECTION
+       ========================================== -->
+  <section class="section-padding" id="contact-hero" style="padding-top: 140px; background-color: var(--color-bg-cream);">
+    <div class="container contact-hero-grid">
+      <div class="contact-hero-left">
+        <span class="section-subtitle" id="contact-subtitle">CONTACT US</span>
+        <h1 id="contact-heading">We'd love to hear from you</h1>
+        <p>Have any question in mind or want to enquire? Please feel free to contact us through the form or the following details.</p>
+      </div>
+
+      <div class="contact-info-panel" id="contact-info">
+        <div class="contact-info-block" id="info-talk">
+          <h3>Let's talk!</h3>
+          <p>+91 98300 12345<br>+91 33 2442 8899<br>tanmoytanmoysaha@gmail.com</p>
+        </div>
+
+        <div class="contact-info-block" id="info-head-office">
+          <h3>Headoffice</h3>
+          <p>39/3, R.K. Chatterjee Road, Kasba,<br>Kolkata - 700042<br>(Recreation Club Premises)</p>
+        </div>
+
+        <div class="contact-info-block" id="info-branch-office">
+          <h3>Center Hours</h3>
+          <p>Monday - Saturday:<br>9:00 AM - 5:00 PM</p>
+        </div>
+
+        <div class="team-socials" style="justify-content: flex-start;">
+          <a href="#" class="team-social-link" aria-label="Facebook"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8H7v3h2v9h3v-9h3l.5-3H12V6c0-.88.72-1 1-1h2V2h-3c-2.76 0-5 2.24-5 5v1z"/></svg></a>
+          <a href="#" class="team-social-link" aria-label="Twitter"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M23.95 4.57a10 10 0 01-2.82.77 4.96 4.96 0 002.16-2.72c-.95.55-2 .95-3.12 1.18a4.92 4.92 0 00-8.38 4.48A14 14 0 011.67 3.15a4.93 4.93 0 001.52 6.57 4.9 4.9 0 01-2.23-.62v.06a4.92 4.92 0 003.95 4.83 4.9 4.9 0 01-2.22.08c.64 2 2.5 3.44 4.7 3.48A9.86 9.86 0 010 19.54a13.9 13.9 0 007.55 2.21c9.05 0 14-7.5 14-14v-.64a10 10 0 002.4-2.54z"/></svg></a>
+          <a href="#" class="team-social-link" aria-label="LinkedIn"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.8v8h2.8v-4.87c0-.26.05-.5.14-.7a1 1 0 0 1 .95-.65c.62 0 .95.5.95 1.37v4.85h2.8M6.5 8.37a1.37 1.37 0 1 0 0-2.75 1.37 1.37 0 0 0 0 2.75M8 18.5V10.5H5v8h3z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       CONTACT FORM SECTION
+       ========================================== -->
+  <section class="contact-form-section" id="contact-form">
+    <div class="container contact-form-container">
+      <form id="actual-contact-form" onsubmit="event.preventDefault(); alert('Your message has been sent successfully. We will get back to you shortly!'); this.reset();">
+        <div class="contact-form-grid">
+          <!-- First Name -->
+          <div class="form-field-wrapper" id="group-first-name">
+            <label for="first-name-input">First Name</label>
+            <input type="text" id="first-name-input" class="form-input-bottom" required placeholder="John">
+          </div>
+
+          <!-- Last Name -->
+          <div class="form-field-wrapper" id="group-last-name">
+            <label for="last-name-input">Last Name</label>
+            <input type="text" id="last-name-input" class="form-input-bottom" required placeholder="Doe">
+          </div>
+
+          <!-- Email -->
+          <div class="form-field-wrapper" id="group-email">
+            <label for="email-input">Email Id</label>
+            <input type="email" id="email-input" class="form-input-bottom" required placeholder="johndoe@gmail.com">
+          </div>
+
+          <!-- Subject -->
+          <div class="form-field-wrapper" id="group-subject">
+            <label for="subject-input">Subject</label>
+            <input type="text" id="subject-input" class="form-input-bottom" required placeholder="Enquiry about volunteering">
+          </div>
+
+          <!-- Message -->
+          <div class="form-field-wrapper form-group-full" id="group-message">
+            <label for="message-input">Message</label>
+            <textarea id="message-input" class="form-textarea-bottom" required placeholder="Type your Message"></textarea>
+          </div>
+        </div>
+
+        <div style="text-align: center;">
+          <button type="submit" class="btn btn-primary" id="contact-form-submit">Send message</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       MAP SECTION
+       ========================================== -->
+  <div class="contact-map-section" id="contact-map">
+    <!-- Fully interactive OpenStreetMap iframe showing Kasba, Kolkata, India area -->
+    <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=88.385%2C22.510%2C88.405%2C22.525&amp;layer=mapnik" aria-label="Interactive map showing MOHOR location in Kolkata"></iframe>
+  </div>
+
+  <!-- ==========================================
+       FOOTER
+       ========================================== -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="logo" id="footer-logo">
+            MOHOR<span>.</span>
+          </a>
+          <p>We provide inclusive care, therapy, and resources for children with special needs to reach their potential.</p>
+        </div>
+
+        <div class="footer-links-grid">
+          <div class="footer-col" id="footer-col-home">
+            <h4 class="footer-col-title">Home</h4>
+            <ul class="footer-list">
+              <li><a href="about.html" id="footer-link-about">About us</a></li>
+              <li><a href="about.html#team" id="footer-link-team">Team</a></li>
+              <li><a href="what-we-do.html" id="footer-link-what-we-do">What we do</a></li>
+              <li><a href="contact.html" id="footer-link-contact-us">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col" id="footer-col-more">
+            <h4 class="footer-col-title">More</h4>
+            <ul class="footer-list">
+              <li><a href="project-detail.html" id="footer-link-projects">Projects</a></li>
+              <li><a href="event-detail.html" id="footer-link-events">Events</a></li>
+              <li><a href="donate.html" id="footer-link-donate">Donate</a></li>
+              <li><a href="media.html" id="footer-link-blog">Blog</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col" id="footer-col-connect">
+            <h4 class="footer-col-title">Connect</h4>
+            <ul class="footer-list">
+              <li><a href="#" id="footer-link-fb">Facebook</a></li>
+              <li><a href="#" id="footer-link-insta">Instagram</a></li>
+              <li><a href="#" id="footer-link-twitter">Twitter</a></li>
+              <li><a href="#" id="footer-link-linkedin">LinkedIn</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-newsletter">
+          <h4 class="footer-newsletter-title" id="footer-newsletter-heading">Subscribe to get latest updates</h4>
+          <p>Stay up to date with our programs, charity drives, and success stories.</p>
+          <form class="newsletter-form" id="footer-subscribe-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+            <input type="email" placeholder="Your email" class="newsletter-input" required id="newsletter-email-input">
+            <button type="submit" class="newsletter-btn" id="newsletter-submit-btn">Subscribe</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p id="copyright-text">&copy; 2026 MOHOR. All rights reserved.</p>
+        <p id="footer-terms"><a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Terms of Service</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
