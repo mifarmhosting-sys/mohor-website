@@ -28,13 +28,213 @@ document.addEventListener('DOMContentLoaded', () => {
 
   navToggle.addEventListener('click', toggleMenu);
 
-  navLinks.forEach(link => {
+  navMenu.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       if (navMenu.classList.contains('open')) {
         toggleMenu();
       }
     });
   });
+
+  const desktopNavigation = window.matchMedia('(min-width: 992px) and (hover: hover)');
+  const navGroups = navMenu.querySelectorAll('.nav-group');
+
+  navGroups.forEach(group => {
+    const summary = group.querySelector('summary');
+    if (!summary) return;
+
+    group.addEventListener('pointerenter', () => {
+      if (desktopNavigation.matches) group.open = true;
+    });
+
+    group.addEventListener('pointerleave', () => {
+      if (desktopNavigation.matches && !group.contains(document.activeElement)) {
+        group.open = false;
+      }
+    });
+
+    group.addEventListener('focusin', () => {
+      if (desktopNavigation.matches) group.open = true;
+    });
+
+    group.addEventListener('focusout', event => {
+      if (desktopNavigation.matches && !group.contains(event.relatedTarget)) {
+        group.open = false;
+      }
+    });
+
+    summary.addEventListener('click', event => {
+      if (desktopNavigation.matches && event.detail > 0) {
+        event.preventDefault();
+      }
+    });
+  });
+
+  const announcementBar = document.getElementById('announcement-bar');
+  const announcementClose = document.getElementById('announcement-close');
+
+  announcementClose?.addEventListener('click', () => {
+    if (announcementBar) announcementBar.hidden = true;
+  });
+
+  // ==========================================
+  // HOMEPAGE DONATION POPUP
+  // ==========================================
+  const homePopup = document.getElementById('home-popup');
+  const homePopupDialog = homePopup?.querySelector('.home-popup-dialog');
+  const homePopupClose = document.getElementById('home-popup-close');
+  const homePopupOverlay = document.getElementById('home-popup-overlay');
+  const donationStep = document.getElementById('home-popup-donation-step');
+  const reminderStep = document.getElementById('home-popup-reminder-step');
+  const homePopupTitle = document.getElementById('home-popup-title');
+  const homePopupReminderTitle = document.getElementById('home-popup-reminder-title');
+  const homePopupBack = document.getElementById('home-popup-back');
+  const homePopupDismiss = document.getElementById('home-popup-dismiss');
+  const homePopupReturnFocus = document.getElementById('header-logo');
+  let isReminderStep = false;
+  let popupCloseTimer;
+
+  const homeDonationForm = document.getElementById('home-donation-form');
+  const homeDonationAmount = document.getElementById('home-donation-amount');
+  const donationCycleOptions = Array.from(document.querySelectorAll('[data-donation-cycle]'));
+  const donationAmountOptions = Array.from(document.querySelectorAll('[data-donation-amount]'));
+  let selectedDonationCycle = 'Monthly';
+
+  if (homeDonationForm && homeDonationAmount) {
+    donationCycleOptions.forEach(option => {
+      option.addEventListener('click', () => {
+        selectedDonationCycle = option.dataset.donationCycle;
+        donationCycleOptions.forEach(cycleOption => {
+          const isSelected = cycleOption === option;
+          cycleOption.classList.toggle('is-selected', isSelected);
+          cycleOption.setAttribute('aria-pressed', String(isSelected));
+        });
+      });
+    });
+
+    donationAmountOptions.forEach(option => {
+      option.addEventListener('click', () => {
+        homeDonationAmount.value = option.dataset.donationAmount;
+        donationAmountOptions.forEach(amountOption => {
+          const isSelected = amountOption === option;
+          amountOption.classList.toggle('is-selected', isSelected);
+          amountOption.setAttribute('aria-pressed', String(isSelected));
+        });
+      });
+    });
+
+    homeDonationAmount.addEventListener('input', () => {
+      donationAmountOptions.forEach(option => {
+        const isSelected = option.dataset.donationAmount === homeDonationAmount.value;
+        option.classList.toggle('is-selected', isSelected);
+        option.setAttribute('aria-pressed', String(isSelected));
+      });
+    });
+
+    homeDonationForm.addEventListener('submit', event => {
+      event.preventDefault();
+      if (!homeDonationForm.reportValidity()) return;
+
+      const donationUrl = new URL('donate.html', window.location.href);
+      donationUrl.searchParams.set('amount', homeDonationAmount.value);
+      donationUrl.searchParams.set('cycle', selectedDonationCycle);
+      donationUrl.hash = 'donate-contribute';
+      window.location.assign(donationUrl.href);
+    });
+  }
+
+  if (homePopup && homePopupDialog && homePopupClose && homePopupOverlay && donationStep && reminderStep && homePopupTitle && homePopupReminderTitle && homePopupDismiss) {
+    const showReminderStep = () => {
+      if (isReminderStep) {
+        closeHomePopup();
+        return;
+      }
+
+      isReminderStep = true;
+      donationStep.hidden = true;
+      reminderStep.hidden = false;
+      homePopupDialog.setAttribute('aria-labelledby', homePopupReminderTitle.id);
+      homePopupClose.setAttribute('aria-label', 'Close popup');
+      homePopupDismiss.focus();
+    };
+
+    const closeHomePopup = () => {
+      homePopup.classList.remove('active');
+      homePopup.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('modal-open');
+      homePopupReturnFocus?.focus();
+      window.clearTimeout(popupCloseTimer);
+    };
+
+    const dismissHomePopup = () => {
+      if (isReminderStep) {
+        closeHomePopup();
+      } else {
+        showReminderStep();
+      }
+    };
+
+    homePopupClose.addEventListener('click', dismissHomePopup);
+    homePopupOverlay.addEventListener('click', dismissHomePopup);
+    homePopupDismiss?.addEventListener('click', closeHomePopup);
+    homePopupBack?.addEventListener('click', () => {
+      isReminderStep = false;
+      reminderStep.hidden = true;
+      donationStep.hidden = false;
+      homePopupDialog.setAttribute('aria-labelledby', homePopupTitle.id);
+      homePopupClose.setAttribute('aria-label', 'Show reminder before closing');
+      homePopupClose.focus();
+    });
+
+    window.addEventListener('keydown', (event) => {
+      if (!homePopup.classList.contains('active')) return;
+
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        dismissHomePopup();
+        return;
+      }
+
+      if (event.key === 'Tab') {
+        const focusableElements = Array.from(homePopupDialog.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled])'))
+          .filter(element => element.offsetParent !== null);
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (event.shiftKey && document.activeElement === firstElement) {
+          event.preventDefault();
+          lastElement.focus();
+        } else if (!event.shiftKey && document.activeElement === lastElement) {
+          event.preventDefault();
+          firstElement.focus();
+        }
+      }
+    });
+
+    document.body.classList.add('modal-open');
+    popupCloseTimer = window.setTimeout(() => {
+      homePopup.classList.add('active');
+      homePopup.setAttribute('aria-hidden', 'false');
+      homePopupClose.focus();
+    }, 450);
+  }
+
+  const donationRegistrationForm = document.getElementById('mohor-donate-form');
+  if (donationRegistrationForm) {
+    const donationParams = new URLSearchParams(window.location.search);
+    const amountField = document.getElementById('amount-value');
+    const cycleField = document.getElementById('payment-cycle');
+
+    const amount = donationParams.get('amount');
+    if (amount && amountField && Number.isFinite(Number(amount)) && Number(amount) >= 100) {
+      amountField.value = amount;
+    }
+
+    const cycle = donationParams.get('cycle');
+    if (cycle && cycleField && Array.from(cycleField.options).some(option => option.value === cycle)) {
+      cycleField.value = cycle;
+    }
+  }
 
   // ==========================================
   // DYNAMIC CHART INTERACTION
@@ -375,5 +575,3 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
-
-

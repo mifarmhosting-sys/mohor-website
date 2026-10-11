@@ -18,12 +18,40 @@
         MOHOR<span>.</span>
       </a>
       
-      <nav class="nav-menu" id="nav-menu">
-        <a href="index.html" class="nav-link" id="nav-link-home">Home</a>
-        <a href="about.html" class="nav-link" id="nav-link-about">About us</a>
-        <a href="what-we-do.html" class="nav-link" id="nav-link-services">What we do</a>
-        <a href="media.html" class="nav-link" id="nav-link-projects">Media</a>
-        <a href="contact.html" class="nav-link" id="nav-link-contact">Contact</a>
+      <nav class="nav-menu" id="nav-menu" aria-label="Main navigation">
+        <details class="nav-group" id="nav-group-about">
+          <summary class="nav-link" id="nav-link-about">About us</summary>
+          <div class="nav-dropdown">
+            <a href="about.html" class="nav-dropdown-link">Our Story</a>
+            <a href="about.html#team" class="nav-dropdown-link">Leadership Team</a>
+            <a href="media.html" class="nav-dropdown-link">Media &amp; Publication</a>
+            <a href="index.html#donations" class="nav-dropdown-link">Financials</a>
+          </div>
+        </details>
+        <details class="nav-group" id="nav-group-services">
+          <summary class="nav-link" id="nav-link-services">Services</summary>
+          <div class="nav-dropdown">
+            <a href="what-we-do.html" class="nav-dropdown-link">Our Services</a>
+            <a href="what-we-do.html#service-family" class="nav-dropdown-link">Family Support</a>
+            <a href="what-we-do.html#service-education" class="nav-dropdown-link">Education</a>
+            <a href="what-we-do.html#service-therapy" class="nav-dropdown-link">Therapy</a>
+          </div>
+        </details>
+        <details class="nav-group" id="nav-group-resources">
+          <summary class="nav-link" id="nav-link-resources">Resources</summary>
+          <div class="nav-dropdown">
+            <a href="project-detail.html" class="nav-dropdown-link">Impact Stories</a>
+            <a href="event-detail.html" class="nav-dropdown-link">Latest Updates</a>
+            <a href="media.html" class="nav-dropdown-link">In Media</a>
+          </div>
+        </details>
+        <details class="nav-group active" id="nav-group-involved">
+          <summary class="nav-link" id="nav-link-involved">Get Involved</summary>
+          <div class="nav-dropdown">
+            <a href="donate.html" class="nav-dropdown-link">Donate</a>
+            <a href="contact.html" class="nav-dropdown-link">Volunteer</a>
+          </div>
+        </details>
         <a href="donate.html" class="btn btn-dark mobile-only" id="nav-btn-donate-mobile">Donate</a>
       </nav>
 
@@ -79,7 +107,7 @@
         </p>
 
         <p style="margin-bottom: 24px; font-size: 15px; line-height: 1.6; font-style: italic; border-left: 3px solid var(--color-secondary); padding-left: 16px;">
-          To become a member of ‘MOHOR Friends’ you need to register your Name & Promise to pay a donation, not less than Rs. 100/= p.m. Donation can also be paid Quarterly, Half-yearly & Yearly.
+          To become a member of ‘MOHOR Friends’ you need to register your Name & promise a donation of at least Rs. 100. Donations can be made once or pledged monthly, quarterly, half-yearly, or yearly.
         </p>
 
         <p style="margin-bottom: 16px; font-size: 15px; line-height: 1.6;">
@@ -164,6 +192,7 @@
                 <label for="payment-cycle">Payment Cycle</label>
                 <select id="payment-cycle" name="Payment_Cycle" class="form-input-bottom" style="border-bottom: 1.5px solid var(--color-border); padding: 10px 0; background-color: transparent; border-radius: 0; outline: none;" required>
                   <option value="Monthly" selected>Monthly</option>
+                  <option value="One-time">One-time</option>
                   <option value="Quarterly">Quarterly</option>
                   <option value="Half-yearly">Half-yearly</option>
                   <option value="Yearly">Yearly</option>

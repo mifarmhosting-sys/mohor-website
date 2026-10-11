@@ -18,12 +18,40 @@
         MOHOR<span>.</span>
       </a>
       
-      <nav class="nav-menu" id="nav-menu">
-        <a href="#hero" class="nav-link active" id="nav-link-home">Home</a>
-        <a href="about.html" class="nav-link" id="nav-link-about">About us</a>
-        <a href="what-we-do.html" class="nav-link" id="nav-link-services">What we do</a>
-        <a href="media.html" class="nav-link" id="nav-link-projects">Media</a>
-        <a href="contact.html" class="nav-link" id="nav-link-contact">Contact</a>
+      <nav class="nav-menu" id="nav-menu" aria-label="Main navigation">
+        <details class="nav-group" id="nav-group-about">
+          <summary class="nav-link" id="nav-link-about">About us</summary>
+          <div class="nav-dropdown">
+            <a href="about.html" class="nav-dropdown-link">Our Story</a>
+            <a href="about.html#team" class="nav-dropdown-link">Leadership Team</a>
+            <a href="media.html" class="nav-dropdown-link">Media &amp; Publication</a>
+            <a href="index.html#donations" class="nav-dropdown-link">Financials</a>
+          </div>
+        </details>
+        <details class="nav-group" id="nav-group-services">
+          <summary class="nav-link" id="nav-link-services">Services</summary>
+          <div class="nav-dropdown">
+            <a href="what-we-do.html" class="nav-dropdown-link">Our Services</a>
+            <a href="what-we-do.html#service-family" class="nav-dropdown-link">Family Support</a>
+            <a href="what-we-do.html#service-education" class="nav-dropdown-link">Education</a>
+            <a href="what-we-do.html#service-therapy" class="nav-dropdown-link">Therapy</a>
+          </div>
+        </details>
+        <details class="nav-group" id="nav-group-resources">
+          <summary class="nav-link" id="nav-link-resources">Resources</summary>
+          <div class="nav-dropdown">
+            <a href="project-detail.html" class="nav-dropdown-link">Impact Stories</a>
+            <a href="event-detail.html" class="nav-dropdown-link">Latest Updates</a>
+            <a href="media.html" class="nav-dropdown-link">In Media</a>
+          </div>
+        </details>
+        <details class="nav-group" id="nav-group-involved">
+          <summary class="nav-link" id="nav-link-involved">Get Involved</summary>
+          <div class="nav-dropdown">
+            <a href="donate.html" class="nav-dropdown-link">Donate</a>
+            <a href="contact.html" class="nav-dropdown-link">Volunteer</a>
+          </div>
+        </details>
         <a href="donate.html" class="btn btn-dark mobile-only" id="nav-btn-donate-mobile">Donate</a>
       </nav>
 
@@ -39,6 +67,17 @@
     </div>
   </header>
 
+  <aside class="announcement-bar" id="announcement-bar" aria-label="MOHOR latest updates">
+    <span class="announcement-badge">MOHOR UPDATES</span>
+    <p>See the latest updates and stories from MOHOR.</p>
+    <a href="media.html" class="announcement-link">Explore updates <span aria-hidden="true">&rarr;</span></a>
+    <button class="announcement-close" id="announcement-close" type="button" aria-label="Dismiss announcement">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="m18 6-12 12M6 6l12 12"></path>
+      </svg>
+    </button>
+  </aside>
+
   <!-- ==========================================
        HERO SECTION
        ========================================== -->
@@ -48,7 +87,7 @@
     </div>
     <div class="container">
       <div class="hero-content">
-        <h1 class="hero-title" id="hero-heading">Inclusive care for children with special needs</h1>
+        <h1 class="hero-title" id="hero-heading">Dedicated care and support for children living with Autism, ADHD, Cerebral Palsy, Intellectual Disability, and Hearing Impairment.</h1>
         <div class="hero-buttons">
           <a href="#services" class="btn btn-white" id="hero-btn-work">What we do</a>
           <a href="#" class="btn-video" id="hero-btn-video" aria-label="Play video intro">
@@ -75,51 +114,15 @@
   </section>
 
   <!-- ==========================================
-       DOCUMENTS & CERTIFICATIONS SECTION
-       ========================================== -->
-  <section class="docs-section" id="docs">
-    <div class="container docs-container">
-      <div class="docs-grid">
-        <button class="doc-btn" data-image="images/Society Registration.jpg" data-title="Society Registration" id="btn-society-reg">
-          <svg class="doc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-            <polyline points="14 2 14 8 20 8"></polyline>
-            <line x1="16" y1="13" x2="8" y2="13"></line>
-            <line x1="16" y1="17" x2="8" y2="17"></line>
-            <polyline points="10 9 9 9 8 9"></polyline>
-          </svg>
-          <span>Society Registration</span>
-        </button>
-
-        <button class="doc-btn" data-image="images/Certificate of PWD.jpg" data-title="Certificate of PWD" id="btn-pwd-cert">
-          <svg class="doc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="8" r="7"></circle>
-            <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
-          </svg>
-          <span>Certificate of PWD</span>
-        </button>
-
-        <button class="doc-btn" data-image="images/Announcement of Paper Document.jpg" data-title="Announcement" id="btn-announcement">
-          <svg class="doc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-          </svg>
-          <span>Announcement</span>
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================
        ABOUT SECTION
        ========================================== -->
   <section class="section-padding" id="about">
     <div class="container about-grid">
       <div class="about-text">
         <span class="section-subtitle" id="about-subtitle">OUR STORY & HISTORY</span>
-        <h2 class="section-title" id="about-title">Bringing opportunities to special kids</h2>
-        <p>A nation's progress is not judged by its wealth but by how well its underprivileged section of people are taken care of. We take everything in life for granted and seldom are we contented with whatever we have been gifted with. If we ponder over what we do every day from dawn to dusk, we can hardly find ourselves thankful for the basic things we have. This is because we are thankful only when we achieve anything other than the ordinary.</p>
-        <p><strong>MOHOR</strong>, as the name suggests, stands for <strong>"Gold Coin"</strong> which is considered to be precious even by the wealthiest and the most impoverished. MOHOR is much more than a symbol of riches — broadly, it synonyms the sense of security. We at MOHOR are striving to make our lives something more meaningful than just living it every day — by bringing in differences from tears to joy, from failures to successes, even if the magnitude is minute. Our efforts are directed to create extraordinary opportunities for below ordinary kids, to rehabilitate them and bring them as close as possible to normal social lives.</p>
+        <h2 class="section-title" id="about-title">About MOHOR</h2>
+        <p>MOHOR is a Kolkata-based non-governmental organization and special education and rehabilitation center dedicated to supporting, rehabilitating, and empowering children with special needs. Named after the Bengali word for a precious gold coin, MOHOR represents the intrinsic worth of every child, regardless of ability or socioeconomic background.</p>
+        <p>The organization operates on the core belief that society’s progress is defined by how well it cares for its most vulnerable populations. MOHOR bridges the gap between potential and opportunity, guiding differently-abled children from isolation to inclusion, and from struggle to self-reliance.</p>
         <a href="about.html" class="btn btn-primary" id="about-btn-learn">Learn more</a>
       </div>
       <div class="about-media" id="about-video-card">
@@ -607,6 +610,8 @@
               <li><a href="about.html#team" id="footer-link-team">Team</a></li>
               <li><a href="what-we-do.html" id="footer-link-what-we-do">What we do</a></li>
               <li><a href="contact.html" id="footer-link-contact-us">Contact</a></li>
+              <li><a href="images/Society%20Registration.jpg" target="_blank" rel="noopener" id="footer-link-society-registration">Society Registration</a></li>
+              <li><a href="images/Certificate%20of%20PWD.jpg" target="_blank" rel="noopener" id="footer-link-pwd-certificate">Certificate of PWD</a></li>
             </ul>
           </div>
 
@@ -669,6 +674,81 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- ==========================================
+       HOMEPAGE DONATION POPUP
+       ========================================== -->
+  <div class="home-popup" id="home-popup" aria-hidden="true">
+    <div class="home-popup-overlay" id="home-popup-overlay"></div>
+    <section class="home-popup-dialog" role="dialog" aria-modal="true" aria-labelledby="home-popup-title">
+      <button class="home-popup-close" id="home-popup-close" type="button" aria-label="Show reminder before closing">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M18 6 6 18M6 6l12 12"></path>
+        </svg>
+      </button>
+
+      <div class="home-popup-story">
+        <img class="home-popup-image" src="images/saurav-ganguly/IMG_6779.JPG" alt="Children and volunteers smiling together at MOHOR">
+        <div class="home-popup-story-content">
+          <a class="home-popup-logo" href="index.html" aria-label="MOHOR home">MOHOR<span>.</span></a>
+          <p class="home-popup-story-copy">Your support helps children with special needs access the care, education, and therapy they deserve.</p>
+          <a class="home-popup-story-link" href="what-we-do.html">Discover what we do <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </div>
+
+      <div class="home-popup-panel">
+        <div class="home-popup-step" id="home-popup-donation-step">
+          <span class="home-popup-eyebrow">YOUR SUPPORT MATTERS</span>
+          <h2 class="home-popup-title" id="home-popup-title">Choose your donation</h2>
+          <form class="home-donation-form" id="home-donation-form">
+            <fieldset class="home-donation-frequency">
+              <legend>Donation frequency</legend>
+              <div class="home-donation-frequency-options">
+                <button class="home-donation-choice" type="button" data-donation-cycle="One-time" aria-pressed="false">Give once</button>
+                <button class="home-donation-choice is-selected" type="button" data-donation-cycle="Monthly" aria-pressed="true"><span aria-hidden="true">♥</span> Monthly</button>
+              </div>
+            </fieldset>
+
+            <fieldset class="home-donation-amounts">
+              <legend>Choose an amount</legend>
+              <div class="home-donation-amount-options">
+                <button class="home-donation-choice" type="button" data-donation-amount="2000" aria-pressed="false">₹2,000</button>
+                <button class="home-donation-choice" type="button" data-donation-amount="3000" aria-pressed="false">₹3,000</button>
+                <button class="home-donation-choice" type="button" data-donation-amount="5000" aria-pressed="false">₹5,000</button>
+                <button class="home-donation-choice" type="button" data-donation-amount="10000" aria-pressed="false">₹10,000</button>
+                <button class="home-donation-choice" type="button" data-donation-amount="12000" aria-pressed="false">₹12,000</button>
+                <button class="home-donation-choice" type="button" data-donation-amount="15000" aria-pressed="false">₹15,000</button>
+              </div>
+            </fieldset>
+
+            <label class="home-donation-custom-label" for="home-donation-amount">Enter an amount</label>
+            <div class="home-donation-custom">
+              <span aria-hidden="true">₹</span>
+              <input id="home-donation-amount" name="amount" type="number" min="100" step="1" value="4000" required inputmode="numeric" aria-describedby="home-donation-help">
+              <span class="home-donation-currency">INR</span>
+            </div>
+            <p class="home-donation-help" id="home-donation-help">Minimum donation: ₹100</p>
+            <button class="btn btn-primary home-popup-primary" type="submit">Continue to registration</button>
+            <p class="home-popup-note">Online payments are not set up here. Your amount and frequency will be carried to the MOHOR Friends registration form.</p>
+          </form>
+        </div>
+
+        <div class="home-popup-step" id="home-popup-reminder-step" hidden>
+          <span class="home-popup-reminder-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48">
+              <path d="M12 34h24l-3.5-5V20a8.5 8.5 0 0 0-17 0v9L12 34Z"></path>
+              <path d="M20 38a4 4 0 0 0 8 0"></path>
+              <path d="m34 13 2 2 4-4"></path>
+            </svg>
+          </span>
+          <h2 class="home-popup-title" id="home-popup-reminder-title">Maybe next time?</h2>
+          <p class="home-popup-description">Thank you for considering MOHOR. You can come back anytime to learn about our work or support the children we serve.</p>
+          <button class="btn btn-primary home-popup-primary" id="home-popup-back" type="button">Back to donation options</button>
+          <button class="home-popup-dismiss" id="home-popup-dismiss" type="button">No, thanks</button>
+        </div>
+      </div>
+    </section>
   </div>
 
   <script src="script.js"></script>
