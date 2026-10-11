@@ -237,14 +237,57 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================
+  // IMPACT STORIES
+  // ==========================================
+  const impactStoryImage = document.getElementById('impact-story-image');
+  const impactStoryHeading = document.getElementById('impact-story-heading');
+  const impactStoryDescription = document.getElementById('impact-story-description');
+  const impactStoryLink = document.getElementById('impact-story-link');
+  const impactStoryPagination = document.getElementById('impact-story-pagination');
+  const impactStories = [
+    {
+      title: "Poetry and Purpose: Gayatri's Aspiring Future",
+      description: 'Akshaya Patra supports Gayatri from Hami with daily meals, helping her stay focused on studies and dream of becoming a bank manager and poet.',
+      image: 'images/saurav-ganguly/IMG_7652.JPG',
+      imageAlt: 'A student and caregivers sharing a moment at a MOHOR community event',
+      href: 'project-detail.html'
+    }
+  ];
+
+  if (impactStoryImage && impactStoryHeading && impactStoryDescription && impactStoryLink && impactStoryPagination) {
+    const showImpactStory = index => {
+      const story = impactStories[index];
+      if (!story) return;
+
+      impactStoryImage.src = story.image;
+      impactStoryImage.alt = story.imageAlt;
+      impactStoryHeading.textContent = story.title;
+      impactStoryDescription.textContent = story.description;
+      impactStoryLink.href = story.href;
+
+      impactStoryPagination.replaceChildren(...impactStories.map((item, itemIndex) => {
+        const button = document.createElement('button');
+        button.className = 'impact-story-dot';
+        button.type = 'button';
+        button.setAttribute('aria-label', `Show impact story ${itemIndex + 1}: ${item.title}`);
+        button.setAttribute('aria-pressed', String(itemIndex === index));
+        button.addEventListener('click', () => showImpactStory(itemIndex));
+        return button;
+      }));
+    };
+
+    showImpactStory(0);
+  }
+
+  // ==========================================
   // DYNAMIC CHART INTERACTION
   // ==========================================
   const segments = [
-    { class: '.segment-1', percent: '40%', label: 'Child Care', legendId: 'legend-care' },
-    { class: '.segment-2', percent: '35%', label: 'Cleanliness', legendId: 'legend-cleanliness' },
-    { class: '.segment-3', percent: '10%', label: 'Helping', legendId: 'legend-helping' },
+    { class: '.segment-1', percent: '40%', label: 'Child care home', legendId: 'legend-care' },
+    { class: '.segment-2', percent: '35%', label: 'Cleanliness program', legendId: 'legend-cleanliness' },
+    { class: '.segment-3', percent: '10%', label: 'Helping people', legendId: 'legend-helping' },
     { class: '.segment-4', percent: '10%', label: 'Excursions', legendId: 'legend-excursions' },
-    { class: '.segment-5', percent: '5%', label: 'Feeding Poor', legendId: 'legend-feeding' }
+    { class: '.segment-5', percent: '5%', label: 'Feeding the poor', legendId: 'legend-feeding' }
   ];
 
   const chartNum = document.getElementById('chart-percentage');
@@ -257,49 +300,68 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  const setSegmentHighlight = (segment, element, legendElement, active) => {
+    updateChartCenter(active ? segment.percent : '100%', active ? segment.label : 'Allocated');
+    if (element) {
+      element.style.strokeWidth = active ? '36' : '';
+      element.style.filter = active ? 'drop-shadow(0 0 9px currentColor)' : '';
+    }
+    if (legendElement) {
+      legendElement.classList.toggle('is-highlighted', active);
+    }
+  };
+
   segments.forEach(seg => {
     const el = document.querySelector(seg.class);
     const legendEl = document.getElementById(seg.legendId);
 
     if (el) {
-      // Hover segment
-      el.addEventListener('mouseenter', () => {
-        updateChartCenter(seg.percent, seg.label);
-        el.style.strokeWidth = '30';
-        if (legendEl) legendEl.style.transform = 'scale(1.05)';
-      });
-
-      el.addEventListener('mouseleave', () => {
-        updateChartCenter('100%', 'Allocated');
-        el.style.strokeWidth = '';
-        if (legendEl) legendEl.style.transform = '';
-      });
+      el.addEventListener('mouseenter', () => setSegmentHighlight(seg, el, legendEl, true));
+      el.addEventListener('mouseleave', () => setSegmentHighlight(seg, el, legendEl, false));
+      el.addEventListener('focus', () => setSegmentHighlight(seg, el, legendEl, true));
+      el.addEventListener('blur', () => setSegmentHighlight(seg, el, legendEl, false));
     }
 
     if (legendEl) {
-      // Hover legend item
-      legendEl.addEventListener('mouseenter', () => {
-        updateChartCenter(seg.percent, seg.label);
-        legendEl.style.transition = 'transform 0.2s ease, color 0.2s ease';
-        legendEl.style.transform = 'translateX(6px)';
-        legendEl.style.color = '#FFFFFF';
-        if (el) {
-          el.style.strokeWidth = '30';
-          el.style.filter = 'drop-shadow(0 0 12px rgba(255,255,255,0.25))';
-        }
-      });
-
-      legendEl.addEventListener('mouseleave', () => {
-        updateChartCenter('100%', 'Allocated');
-        legendEl.style.transform = '';
-        legendEl.style.color = '';
-        if (el) {
-          el.style.strokeWidth = '';
-          el.style.filter = '';
-        }
-      });
+      legendEl.addEventListener('mouseenter', () => setSegmentHighlight(seg, el, legendEl, true));
+      legendEl.addEventListener('mouseleave', () => setSegmentHighlight(seg, el, legendEl, false));
+      legendEl.addEventListener('focus', () => setSegmentHighlight(seg, el, legendEl, true));
+      legendEl.addEventListener('blur', () => setSegmentHighlight(seg, el, legendEl, false));
     }
   });
+
+  // ==========================================
+  // LATEST UPDATES CAROUSEL
+  // ==========================================
+  const updatesTrack = document.getElementById('latest-updates-track');
+  const updatesPrevious = document.getElementById('latest-updates-prev');
+  const updatesNext = document.getElementById('latest-updates-next');
+
+  if (updatesTrack && updatesPrevious && updatesNext) {
+    const updateCarouselControls = () => {
+      const maxScroll = updatesTrack.scrollWidth - updatesTrack.clientWidth;
+      updatesPrevious.disabled = updatesTrack.scrollLeft <= 1;
+      updatesNext.disabled = updatesTrack.scrollLeft >= maxScroll - 1;
+    };
+
+    const scrollUpdates = direction => {
+      const card = updatesTrack.querySelector('.latest-update-card');
+      if (!card) return;
+      const trackStyles = window.getComputedStyle(updatesTrack);
+      const gap = parseFloat(trackStyles.columnGap) || parseFloat(trackStyles.gap) || 0;
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      updatesTrack.scrollBy({
+        left: direction * (card.getBoundingClientRect().width + gap),
+        behavior: reducedMotion ? 'auto' : 'smooth'
+      });
+    };
+
+    updatesPrevious.addEventListener('click', () => scrollUpdates(-1));
+    updatesNext.addEventListener('click', () => scrollUpdates(1));
+    updatesTrack.addEventListener('scroll', updateCarouselControls, { passive: true });
+    window.addEventListener('resize', updateCarouselControls);
+    updateCarouselControls();
+  }
 
   // ==========================================
   // ACTIVE NAVIGATION LINK ON SCROLL
